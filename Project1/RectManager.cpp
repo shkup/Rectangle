@@ -68,11 +68,17 @@ RectManager::RectManager()
 RectManager::~RectManager()
 {
 	// Free the whole chain
-	RectManager::RectNode* nodeToDelete = NULL;
-	for (RectManager::RectNode* curNode = this->m_head; curNode != NULL; curNode = curNode->getNext()) {
-		nodeToDelete = curNode;
+	RectManager::RectNode* nodeToDelete = this->m_head;
+	while (nodeToDelete != NULL)
+	{
+		//Advance the head
+		this->m_head = this->m_head->getNext();
 
+		// Delete the previous head
 		delete nodeToDelete;
+
+		// Advance
+		nodeToDelete = this->m_head;
 	}
 }
 

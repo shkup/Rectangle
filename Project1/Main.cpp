@@ -2,6 +2,7 @@
 #include "RectManager.h"
 #include <conio.h>
 #include <stdio.h>
+#include <crtdbg.h> // For memory leaks detection
 
 int main(int argc, char* argv[]) 
 {
@@ -24,6 +25,10 @@ int main(int argc, char* argv[])
 
 	int biggestRectIndex = rectManager->getMaxRectangleIndex();
 	printf("The biggest rectangle index is %d\r\n", biggestRectIndex);
+
+	delete rectManager;
+
+	_CrtDumpMemoryLeaks();
 
 	printf("Press any key to exit...");
 	_getch();
